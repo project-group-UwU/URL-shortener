@@ -45,6 +45,7 @@
           a {
             font-size: 20px;
             margin-right: 0px;
+            margin-left:20px;
             margin-bottom: 0px;
             font-style: oblique;
           }
@@ -71,7 +72,7 @@
           <form action="shorten.php" method="post">
             <div class="form-group d-flex justify-content-start">
               <input type="url" class="form-control border border-primary rounded-pill border-5" name="url" id="url" placeholder="Paste URL: www.mywebsite.com/">
-              <button type="submit" class="btn btn-primary">Sumit</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
             </div>
           </form>
         </div>
@@ -136,26 +137,112 @@
         <div class="row mt-4" style="height: 40px;">
           <div class="divider4"></div>
         </div>
+
+
+
+        <div class="row">
+          <div class="col">
+            <h3 class="text-left">New URL is:</h3>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-6">
+            <form action="shorten.php" method="post">
+              <div class="form-group d-flex justify-content-center">
+                <input type="url" class="btn btn-outline-warning form-control rounded-pill border-3" name="url" id="url" placeholder="yesyeil.ca/XYz" style="background-color: white; color: orange;">
+                <button type="submit" class="btn btn-outline-warning text-white" style="background-color: rgb(231, 149, 27)">Copy</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="row d-flex align-items-center">
+
+          <div class="col-5" style="margin-top: 40px;">
+            
+            <h3 class="text-center">Get your QR code</h3>
+            <h3 class="text-center"> for the website:</h3>
+            
+            <style>
+              .btn-block {
+                margin-left: 210px;
+                margin-top: 20px;
+                
+                color:"background-color: rgb(231, 149, 27)"
+              }
+            </style>
+            <button type="button" class="btn btn-primary btn-outline-warning btn-block text-white rounded-pill" style="background-color: rgb(231, 149, 27)">Generate</button>
+
+            <img src="qrcode.svg" alt="QR Code" width="200" height="200" style="position: relative; top: -70px; left: 150px;">
+            
+            
+            
+
+            
+    
+          </div>
+
+          <div class="col">
+            
+            <div style="height: 100%; border-left: 5px solid orange;" style="">
+            </div>
+          </div>
+
+          <div class="col-5">
+            <style>
+              .vl {
+                border-left: 3px solid orange;
+                height: 250px;
+                
+                left:100px; 
+              }
+            </style>
+            <style>
+              
+              .text-left {
+                  font-size: 14px; 
+                  
+                  margin-left: 50px;
+              }
+            </style>
+              <div class="vl">
+              <h1 class="text-left">Instructions: Enter your URL in the blue search</h1>
+              <h1 class="text-left">box on the right-hand side to generate a</h1>
+              <h1 class="text-left">shortened URL</h1>
+              <br>
+              <h1 class="text-left">With Custom Prefix: Specify your desired URL</h1>
+              <h1 class="text-left">prefix in the blue box on the left-hand side to</h1>
+              <h1 class="text-left">obtain a shortened URL with your chosen prefix</h1>
+              <h1 class="text-left">Example: Entering "abc | www.uvic.com" will</h1>
+              <h1 class="text-left">result in: yesyeil.ca/abc/XYz</h1>
+              </div>
+          </div>
+          
+        
+          <!-- Right container -->
+          <div class="col-5">
+            <!-- Content for the right container goes here -->
+            <!-- <h1 class="text-center">Right Container</h1>
+            <h1 class="text-center">Right Container</h1>
+            <h1 class="text-center">Right Container</h1>
+            <h1 class="text-center">Right Container</h3>
+            <h1 class="text-center">Right Container</h1>
+            <h1 class="text-center">Right Container</h1>
+            <h1 class="text-center">Right Container</h1>
+            <h1 class="text-center">Right Container</h1>
+            <h1 class="text-center">Right Container</h1> -->
+            <!-- Additional content goes here -->
+          </div>
+        </div>
+        
+        
       
 
 
 
 
 
-        <div class="row">
-          <div class="col">
-            <h3 class="text-left">New URL is:</h>
-          </div>
-        </div>
-          <div class="col-6">
-            <form action="shorten.php" method="post">
-              <div class="form-group d-flex justify-content-center">
-                <input type="url" class="form-control border border-primary rounded-pill border-5" name="url" id="url" placeholder="Paste URL: www.mywebsite.com/">
-                <button type="submit" class="btn btn-primary">Sumit</button>
-              </div>
-            </form>
-          </div>
-        </div>
+        
       
   </body>
 </html>

@@ -37,3 +37,7 @@ server/public/assets
 
 # Ignore master key for decrypting credentials and more.
 server/config/master.key
+
+usr/node_modules
+node_modules
+node_modules

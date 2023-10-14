@@ -6,5 +6,6 @@ Rails.application.routes.draw do
 
   root "url#index"
 
-  get 'url', to: 'url#index'
+  get 'url', to: 'url#home'
+  get 'url/index', to: 'url#index'
 end

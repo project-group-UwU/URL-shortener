@@ -37,7 +37,7 @@ And set up databases (run rails db:create ***only if it's your first time runnin
 ```
 cd server
 bundle install
-rails db:creat
+rails db:create
 rails db:migrate
 rails server
 ```

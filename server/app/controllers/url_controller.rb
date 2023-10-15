@@ -1,19 +1,15 @@
 class UrlController < ApplicationController
     def new
-        @post = Post.new
+        @url = Url.new
     end
 
     def create
-        @post = Post.new(post_params)
-        if @post.save
-        redirect_to @post
+        @url = Url.generate_shorten_url(url_params[:origin_url], request.remote_ip)
+        if @url.save
+            redirect_to action: "show", id: @url.id, notice: "Url was successfully created."
         else
-        render 'new'
+            render 'new', notice: "Url was not successfully created."
         end
-    end
-
-    def home
-        render 'home'
     end
 
     def index
@@ -21,9 +17,13 @@ class UrlController < ApplicationController
         render json: @urls
     end
 
+    def show
+        @url = Url.find(params[:id])
+    end
+
     private
 
-    def post_params
-        params.require(:post).permit(:title, :body)
+    def url_params
+        params.require(:url).permit(:origin_url)
     end
 end

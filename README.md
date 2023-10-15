@@ -31,3 +31,15 @@ gem update --system 3.4.19
 ```
 
 Now, you should have Ruby & Ruby on Rails on your computer
+
+Before run server, run migration first
+And set up databases (run rails db:create ***only if it's your first time running***)
+```
+cd server
+bundle install
+rails db:creat
+rails db:migrate
+rails server
+```
+
+Then, go to http://localhost:3000/url/new to create new encoded url (this will be updated later)

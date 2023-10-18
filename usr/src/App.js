@@ -1,3 +1,4 @@
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
@@ -10,7 +11,9 @@ ReactDOM.render(<App />, rootElement);
 
 function App() {
   return (
+    
     <div>
+      
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <p style={{ fontSize: '40px', marginLeft: '40px', marginBottom: '0', fontStyle: 'oblique' }}>URL</p>
         <p style={{ fontSize: '40px', fontStyle: 'oblique' }}>Shortner</p>
@@ -35,7 +38,7 @@ function App() {
 
 
 
-      <div className="container">
+      <div className="container center">
         <div className="row center">
           <div className="col">
             <h3 className="text-left form-group d-flex justify-content-left">Make your URL Simple!</h3>

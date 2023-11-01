@@ -3,7 +3,7 @@ require 'base64'
 require 'time'
 
 class Url < ApplicationRecord
-    @base_url = "yesyeil.new/"
+    @base_url = "yesyeil.ca/"
 
     validates :origin_url, presence: true, uniqueness: true
     validates :shorten_url, uniqueness: true

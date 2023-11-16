@@ -1,0 +1,14 @@
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
+<%= form_for :url, url:url_index_path do |f| %>
+    <p>
+        <%= f.label :origin_url %><br>
+        <%= f.text_field :origin_url %>
+    </p>
+    
+    <p>
+        <%= f.submit %>
+    </p>
+<% end %>

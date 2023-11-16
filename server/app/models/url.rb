@@ -15,10 +15,10 @@ class Url < ApplicationRecord
         url = Url.new
         url.origin_url = origin_url
 
-        uri = URI(origin_url)
-        code = Net::HTTP.get_response(uri).code.to_i
-        if code < 200 && code >= 400        # Generate shorten_url only if the origin_url is valid (status code: 200~399)
-            return nil
+        # uri = URI(origin_url)
+        # code = Net::HTTP.get_response(uri).code.to_i
+        # if code < 200 && code >= 400        # Generate shorten_url only if the origin_url is valid (status code: 200~399)
+        #     return nil
         
         # Generate shorten_url with length of n (default: 1), and check if it already exists in the database
         # If it exists, increment n by 1 and generate new shorten_url

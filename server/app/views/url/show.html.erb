@@ -6,6 +6,9 @@
     <strong>Shorten url:</strong> <%= @url.shorten_url %>
 </p>
 
-<%= link_to 'Delete', [:delete, @url], data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Delete', url_path(@url), method: :delete, data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  }%>
 
 <%= link_to 'Back', new_url_path %>

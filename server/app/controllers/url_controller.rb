@@ -24,8 +24,10 @@ class UrlController < ApplicationController
 
     def destroy
         @url = Url.find(params[:id])
-        @url.destroy
-        redirect_to action: 'new', notice: "Url was successfully destroyed."
+        origin_url = @url.origin_url
+        @url.destroy!
+        flash[:notice] = "Shorten URL of " + origin_url + " was successfully destroyed."
+        redirect_to action: 'new', notice: flash[:notice]
     end
 
     def dynamic_redirect

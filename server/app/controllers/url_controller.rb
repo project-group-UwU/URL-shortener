@@ -5,7 +5,7 @@ class UrlController < ApplicationController
 
     def create
         @url = Url.generate_shorten_url(url_params[:origin_url], request.remote_ip)
-        if @url.save
+        if @url && @url.save
             redirect_to action: "show", id: @url.id, notice: "Url was successfully created."
         else
             render 'new', notice: "Url was not successfully created."

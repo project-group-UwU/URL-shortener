@@ -1,18 +1,29 @@
 require 'ipaddr'
 require 'base64'
 require 'time'
+require 'securerandom'
 
 class Url < ApplicationRecord
     @base_url = "yesyeil.ca/"
 
     validates :origin_url, presence: true, uniqueness: true
-    validates :shorten_url, uniqueness: true
+    # validates :shorten_url, uniqueness: true
     # validates :ipv4_address, presence: true       # This validation should be applied later for security reason (to prevent DDOS attack)
 
     def self.generate_shorten_url(origin_url, ipv4_address)
         url = Url.new
         url.origin_url = origin_url
-        url.shorten_url = @base_url + Base64.encode64(origin_url)
+        
+        # Generate shorten_url with length of n (default: 1), and check if it already exists in the database
+        # If it exists, increment n by 1 and generate new shorten_url
+        n = 1
+        new_shorten_url = @base_url + SecureRandom.urlsafe_base64(n)
+        while Url.exists?(shorten_url: new_shorten_url)
+            n += 1
+            new_shorten_url = @base_url + SecureRandom.urlsafe_base64(n)
+        end
+        url.shorten_url = new_shorten_url
+
         url.time = Time.now
         # url.ipv4_address = IPAddr.new(request.remote_ip).to_i
         url

@@ -22,6 +22,12 @@ class UrlController < ApplicationController
         @url = Url.find(params[:id])
     end
 
+    def destroy
+        @url = Url.find(params[:id])
+        @url.destroy
+        redirect_to action: "index", notice: "Url was successfully destroyed."
+    end
+
     private
 
     def url_params

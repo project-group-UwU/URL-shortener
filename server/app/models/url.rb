@@ -13,9 +13,14 @@ class Url < ApplicationRecord
 
     def self.generate_shorten_url(origin_url, ipv4_address)
         url = Url.new
-        url.origin_url = origin_url
 
-        uri = URI("https://" + origin_url)
+        # Add "https://" to the origin_url if it doesn't have it
+        unless /\/\//.match(origin_url)
+            origin_url = "https://" + origin_url
+        end
+
+        url.origin_url = origin_url
+        uri = URI(url.origin_url)
         begin
             http_status = Net::HTTP.get_response(uri).code.to_i
         # Handle TCP connection error
@@ -33,8 +38,12 @@ class Url < ApplicationRecord
         n = 1
         new_shorten_url = @base_url + SecureRandom.urlsafe_base64(n)
         while Url.exists?(shorten_url: new_shorten_url)
+            # Check if the shorten_url is already in the database for 10 times
+            for i in 0..10
+                new_shorten_url = @base_url + SecureRandom.urlsafe_base64(n)
+                Url.exists?(shorten_url: new_shorten_url) ? next : break
+            end
             n += 1
-            new_shorten_url = @base_url + SecureRandom.urlsafe_base64(n)
         end
         url.shorten_url = new_shorten_url
 
@@ -47,10 +56,4 @@ class Url < ApplicationRecord
         url = Url.find_by(origin_url: origin_url)
         url.destroy!
     end
-
-    # Implement this method later
-    # def self.update_shorten_url(origin_url)
-    #     self.shorten_url = @base_url + Base64.encode64(origin_url)
-    #     puts self.shorten_url
-    # end
 end

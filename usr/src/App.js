@@ -41,11 +41,20 @@ function App() {
   }
 
   const requestShortenUrl = async (event) => {
-    console.log(event);
     await fetch('http://184.66.245.51/url/new').then(res => console.log(res));
+    console.log(event);
     // send origin_url and prefix to server
+  } 
 
-  }
+  // const requestShortenUrl = async (event) => {
+  //   event.preventDefault(); // Add this line to prevent default form submission behavior
+  
+  //   // Your existing code
+  //   console.log(event);
+  //   await fetch('http://184.66.245.51/url/new').then(res => console.log(res));
+  //   // send origin_url and prefix to server
+  // }
+  
 
 
   return (
@@ -105,7 +114,7 @@ function App() {
             </div>
 
             <div className="col-2">
-              <button type="button" onSubmit={requestShortenUrl} className="btn btn-primary custom-button rounded-pill">Submit</button>
+              <button type="submit" onSubmit={requestShortenUrl} className="btn btn-primary custom-button rounded-pill">Submit</button>
             </div>
         </form>
           

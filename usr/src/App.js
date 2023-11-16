@@ -4,7 +4,7 @@ const MyComponent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://api.publicapis.org/entries");
+        const response = await fetch("http://184.66.245.51/url/11");
         const data = await response.text();
         console.log(data);
       } catch (error) {

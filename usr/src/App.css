@@ -23,6 +23,17 @@
   }
 }
 
+#github-logo {
+  width: 30px;
+  height: 30px;
+}
+
+.title-text {
+  font-size: 80px;
+  margin-bottom: 0px;
+  font-style: oblique;
+}
+
 p {
   font-size: 40px;
   margin-left: 40px;
@@ -43,11 +54,19 @@ a {
   font-style: oblique;
 }
 
+.custom-button {
+  width: 60%;
+  color: "background-color: rgb(231, 149, 27)";
+  height: 100%;
+  /* border-radius: ; */
+}
+
 .divider {
   width: 70%;
   height: 3px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 2%;
   background-color: rgb(44, 99, 219);
 }
 

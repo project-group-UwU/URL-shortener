@@ -29,8 +29,8 @@ class UrlController < ApplicationController
     end
 
     def dynamic_redirect
-        redirect_url = "http://184.66.245.51/"
-        @url = Url.find_by(shorten_url: redirect_url+params[:shorten_url])
+        base_url = "yesyeil.ca/"
+        @url = Url.find_by(shorten_url: base_url+params[:shorten_url])
         if @url
             redirect_to @url.origin_url, allow_other_host: true
         else

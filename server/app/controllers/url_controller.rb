@@ -28,6 +28,15 @@ class UrlController < ApplicationController
         redirect_to action: "index", notice: "Url was successfully destroyed."
     end
 
+    def dynamic_redirect
+        @url = Url.find_by(shorten_url: params[:shorten_url])
+        if @url
+            redirect_to @url.origin_url, allow_other_host: true
+        else
+            render json: { error: "Url not found" }, status: 404
+        end
+    end
+
     private
 
     def url_params

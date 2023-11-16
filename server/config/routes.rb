@@ -8,7 +8,8 @@ Rails.application.routes.draw do
 
   resources :url
 
-  get "/url", to: "url#new"
-  get "/url/:id", to: "url#show"
-  delete "/url/:id", action: :destroy, to: "url#destroy"
+  # get "/url", to: "url#new"
+  # get "/url/:id", to: "url#show"
+  # delete "/url/:id", action: :destroy, to: "url#destroy"
+  get 'dynamic_redirect/*shorten_url', to: 'url#dynamic_redirect'
 end

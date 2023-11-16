@@ -48,7 +48,6 @@ class Url < ApplicationRecord
         url.shorten_url = new_shorten_url
 
         url.time = Time.now
-        # url.ipv4_address = IPAddr.new(request.remote_ip).to_i
         url
     end
 

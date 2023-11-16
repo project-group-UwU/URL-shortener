@@ -1,3 +1,7 @@
+<% if flash[:notice] %>
+    <div class="alert"><%= flash[:notice] %></div>
+<% end %>
+
 <%= form_for :url, url:url_index_path do |f| %>
     <p>
         <%= f.label :origin_url %><br>

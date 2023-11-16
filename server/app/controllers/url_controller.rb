@@ -8,7 +8,8 @@ class UrlController < ApplicationController
         if @url && @url.save
             redirect_to action: "show", id: @url.id, notice: "Url was successfully created."
         else
-            render 'new', notice: "Url was not successfully created."
+            flash[:notice] = "Url creation was not successful."
+            redirect_to action: 'new', notice: flash[:notice]
         end
     end
 

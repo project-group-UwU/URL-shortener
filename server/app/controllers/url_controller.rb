@@ -4,9 +4,22 @@ class UrlController < ApplicationController
     end
 
     def create
-        @url = Url.generate_shorten_url(url_params[:origin_url], request.remote_ip)
-        if @url && @url.save
-            redirect_to action: "show", id: @url.id, notice: "Url was successfully created."
+        # Add "https://" to the origin_url if it doesn't have it
+        unless /\/\//.match(url_params[:origin_url])
+            origin_url = "https://" + url_params[:origin_url]
+        end
+        
+        # if url already exists, redirect to the show page of the url
+        @url = Url.find_by(origin_url: origin_url)
+        if @url
+            flash[:notice] = "Url already exists."
+            redirect_to action: "show", id: @url.id
+            return
+        end
+        
+        @new_url = Url.generate_shorten_url(url_params[:origin_url], request.remote_ip)
+        if @new_url && @new_url.save
+            redirect_to action: "show", id: @new_url.id, notice: "Url was successfully created."
         else
             flash[:notice] = "Url creation was not successful."
             redirect_to action: 'new', notice: flash[:notice]

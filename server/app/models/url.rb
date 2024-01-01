@@ -6,6 +6,7 @@ require 'net/http'
 
 class Url < ApplicationRecord
     @base_url = "yesyeil.ca/"
+    @http_prefix = "https://"
 
     validates :origin_url, presence: true, uniqueness: true
     validates :shorten_url, uniqueness: true
@@ -16,7 +17,7 @@ class Url < ApplicationRecord
 
         # Add "https://" to the origin_url if it doesn't have it
         unless /\/\//.match(origin_url)
-            origin_url = "https://" + origin_url
+            origin_url = @http_prefix + origin_url
         end
 
         url.origin_url = origin_url

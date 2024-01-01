@@ -29,8 +29,6 @@ function App() {
 
   const handleUrlChange = (event) => {
     setUrl({ ...url, origin_url: event.target.value });
-    // requestShortenUrl();
-    // setUrl.url = event.target.value;
     console.log(url);
   }
 
@@ -41,26 +39,19 @@ function App() {
   }
 
   const requestShortenUrl = async (event) => {
-    await fetch('http://184.66.245.51/url/new').then(res => console.log(res));
     console.log(event);
-    // send origin_url and prefix to server
+    event.preventDefault(); // Add this line to prevent default form submission behavior
+    // Your existing code
+    console.log(url);
+    // await fetch(`http://localhost:4000/url/new?origin_url=${url.origin_url}`)
+    // .then(res => res.json())
+    // .then(data => setShortUrl({ ...shortUrl, short_url: data.short_url }));
+    // console.log(shortUrl);
   } 
-
-  // const requestShortenUrl = async (event) => {
-  //   event.preventDefault(); // Add this line to prevent default form submission behavior
-  
-  //   // Your existing code
-  //   console.log(event);
-  //   await fetch('http://184.66.245.51/url/new').then(res => console.log(res));
-  //   // send origin_url and prefix to server
-  // }
-  
 
 
   return (
-    
     <div>
-      
       <nav className="navbar navbar-light bg-light mb-3 h1 title-text">
         <div className="container-fluid">
         <span className="navbar-brand mb-0 h2">
@@ -69,15 +60,8 @@ function App() {
           <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="githubLogo" id='github-logo' />
         </button>
         </div>
-        
       </nav>
       
-
-
-
-
-
-
       <div className="container center">
         <div className="row center">
           <div className="col">
@@ -86,31 +70,15 @@ function App() {
         </div>
 
         <div className="row">
-
-          <form>
-            <div className="col-3">
-              <div className="form-group d-flex justify-content-around">
-                <input
-                  value={url.prefix}
-                  onChange={handlePrefixChange}
-                  className="form-control border border-primary rounded-pill border-5"
-                  name="prefix"
-                  id="prefix"
-                  placeholder="Optional Prefix" />
-              </div>
-            </div>
-
-            <div className="col-7">
-              <div className="form-group d-flex justify-content-start">
-                <input
-                  value={url.origin_url}
-                  onChange={handleUrlChange}
-                  type="url"
-                  className="form-control border border-primary rounded-pill border-5"
-                  name="origin_url"
-                  id="origin_url"
-                  placeholder="Paste URL: www.mywebsite.com/" />
-              </div>
+          <form className="row justify-content-center">
+            <div className="col-10">
+              <input
+                value={url.origin_url}
+                onChange={handleUrlChange}
+                className="form-control border border-primary rounded-pill border-5"
+                name="origin_url"
+                id="origin_url"
+                placeholder="Paste URL: www.mywebsite.com/" />
             </div>
 
             <div className="col-2">
@@ -140,8 +108,6 @@ function App() {
           <div className="divider4"></div>
         </div>
 
-        
-
         <div className="row">
           <div className="col">
             <h3 className="text-left">New URL is:</h3>
@@ -160,22 +126,17 @@ function App() {
           <div className="col-2">
             <button type="submit" className="btn btn-outline-warning text-white custom-button rounded-pill" style={{ backgroundColor: 'rgb(231, 149, 27)' }}>Copy</button>
           </div>
-            
         </div>
 
         <div className="row d-flex align-items-center">
           <div className="col-5" style={{ marginTop: '40px' }}>
             <h3 className="text-center">Get your QR code</h3>
             <h3 className="text-center"> for the website:</h3>
-            
-            {/* Additional button styles can be applied with CSS */}
             <button className="btn btn-primary btn-outline-warning btn-block text-white rounded-pill" style={{ backgroundColor: 'rgb(231, 149, 27)' }}>
               Get QR Code
             </button>
           </div>
         </div>
-
-        
       </div>
     </div>
   );

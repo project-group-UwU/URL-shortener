@@ -6,47 +6,56 @@ import './index.css';
 
 // const rootElement = document.getElementById('root');
 
-// ReactDOM.render(<App />, rootElement);
-
+// require('dotenv').config({
+//   path: process.env.NODE_ENV === "production" ? ".env.production" : ".env.development"
+// });
 
 function App() {
+  const serverUri = process.env.NODE_ENV === "production" ? process.env.RAILS_APP_URI : 'http://localhost:3000';
   const [url, setUrl] = useState({
     origin_url: '',
     prefix: ''
   });
+
   const [shortUrl, setShortUrl] = useState({
     short_url: ''
   });
+
   useEffect(() => {
     setUrl(url);
-    // setShortUrl(shortUrl);
   },[url]);
 
   useEffect(() => {
     setShortUrl(shortUrl);
   },[shortUrl]);
 
-
-  const handleUrlChange = (event) => {
-    setUrl({ ...url, origin_url: event.target.value });
+  const handleUrlChange = (e) => {
+    setUrl({ ...url, origin_url: e.target.value });
     console.log(url);
   }
 
-  const handlePrefixChange =  (event) => {
-    console.log(url);
-    setUrl({ ...url, prefix: event.target.value });
-
-  }
-
-  const requestShortenUrl = async (event) => {
-    console.log(event);
-    event.preventDefault(); // Add this line to prevent default form submission behavior
+  const requestShortenUrl = async (e) => {
     // Your existing code
-    console.log(url);
-    // await fetch(`http://localhost:4000/url/new?origin_url=${url.origin_url}`)
-    // .then(res => res.json())
-    // .then(data => setShortUrl({ ...shortUrl, short_url: data.short_url }));
-    // console.log(shortUrl);
+    console.log(serverUri);
+    await fetch(`${serverUri}/url`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(url)
+    })
+    .then(res => {
+      const data = res.json();
+      if (!res.ok) {
+        throw new Error('Failed to fetch.');
+      }
+      return data;
+    })
+    .then(resData => { setShortUrl({ short_url: resData.shorten_url }) })
+    .catch(err => {
+      console.log(err);
+    });
+    console.log(shortUrl);
   } 
 
 
@@ -70,10 +79,9 @@ function App() {
         </div>
 
         <div className="row">
-          <form className="row justify-content-center">
+          <form className="row justify-content-center" onSubmit={e => e.preventDefault()}>
             <div className="col-10">
               <input
-                value={url.origin_url}
                 onChange={handleUrlChange}
                 className="form-control border border-primary rounded-pill border-5"
                 name="origin_url"
@@ -82,7 +90,7 @@ function App() {
             </div>
 
             <div className="col-2">
-              <button type="submit" onSubmit={requestShortenUrl} className="btn btn-primary custom-button rounded-pill">Submit</button>
+              <button type="submit" onClick={requestShortenUrl} className="btn btn-primary custom-button rounded-pill">Submit</button>
             </div>
         </form>
           
@@ -118,23 +126,21 @@ function App() {
           <div className="col-10">
             <form action="shorten.php" method="post">
               <div className="form-group d-flex justify-content-center">
-                <input type="url" className="btn btn-outline-warning form-control rounded-pill border-5" name="url" id="url" placeholder="yesyeil.ca/XYz" style={{ backgroundColor: 'white', color: 'orange' }} />
+                <div
+                  className="btn btn-outline-warning form-control rounded-pill border-5"
+                  name="url"
+                  id="url"
+                  placeholder="yesyeil.ca/XYz"
+                  style={{ backgroundColor: 'white', color: 'orange' }}
+                  >
+                {shortUrl.short_url}
+                </div>
               </div>
             </form>
           </div>
 
           <div className="col-2">
             <button type="submit" className="btn btn-outline-warning text-white custom-button rounded-pill" style={{ backgroundColor: 'rgb(231, 149, 27)' }}>Copy</button>
-          </div>
-        </div>
-
-        <div className="row d-flex align-items-center">
-          <div className="col-5" style={{ marginTop: '40px' }}>
-            <h3 className="text-center">Get your QR code</h3>
-            <h3 className="text-center"> for the website:</h3>
-            <button className="btn btn-primary btn-outline-warning btn-block text-white rounded-pill" style={{ backgroundColor: 'rgb(231, 149, 27)' }}>
-              Get QR Code
-            </button>
           </div>
         </div>
       </div>

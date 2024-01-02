@@ -1,5 +1,9 @@
 usr/node_modules
 node_modules
+<<<<<<< HEAD
+=======
+.env*
+>>>>>>> local1
 
 # See https://help.github.com/articles/ignoring-files for more about ignoring files.
 #

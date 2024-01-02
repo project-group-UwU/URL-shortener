@@ -1,2 +1,21 @@
+# code will be updated for the admin account
+
 # <!-- app/views/url/index.html.erb -->
-# <h1>Welcome to the Index Page</h1>
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
+<p>
+    <strong>Origin url:</strong> <%= @url.origin_url %>
+</p>
+
+<p>
+    <strong>Shorten url:</strong> <%= @url.shorten_url %>
+</p>
+
+<%= link_to 'Delete', url_path(@url), method: :delete, data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  }%>
+
+<%= link_to 'Back', new_url_path %>

@@ -18,7 +18,7 @@
 }
 
 .output__box:empty::before {
-	content: "Example: short.yesyeil.ca/XYZ";
+	content: "Example: url.yesyeil.ca/XYZ";
 	color: #757575;
 
 }

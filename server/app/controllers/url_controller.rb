@@ -42,7 +42,7 @@ class UrlController < ApplicationController
     end
 
     def dynamic_redirect
-        base_url = "short.yesyeil.ca/"
+        base_url = "url.yesyeil.ca/"
         @url = Url.find_by(shorten_url: base_url+params[:shorten_url])
         if @url
             redirect_to @url.origin_url, allow_other_host: true

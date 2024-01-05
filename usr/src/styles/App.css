@@ -1,0 +1,32 @@
+
+.App-header {
+	background-color: #282c34;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: white;
+}
+
+#github-logo {
+	width: 30px;
+	height: 30px;
+}
+
+.title-text {
+	font-size: 80px;
+	margin-bottom: 0px;
+	font-style: oblique;
+}
+
+.btn-block {
+	margin-left: 210px;
+	margin-top: 20px;
+	background-color: rgb(231, 149, 27);
+}
+
+::placeholder {
+   text-align: center; 
+}

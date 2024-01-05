@@ -1,0 +1,45 @@
+.output__container {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.output__wrapper {
+	width: 100%;
+	padding: 0 1rem;
+}
+
+.output__box {
+	height: 3rem;
+	width: 100%;
+	padding: .5rem 1rem;
+	border-radius: 9999px;
+	border: 5px solid #ffc107;
+	text-align: center;
+}
+
+.output__box:empty::before {
+	content: "Example: yesyeil.ca/XYZ";
+	color: #757575;
+
+}
+
+.button__wrapper {
+	padding: 0 1rem;
+}
+
+.copy__button {
+	width: 5rem;
+	height: 100%;
+	border-radius: 9999px;
+	background-color: #e7951b;
+	border: 0;
+	padding: 0 0.75rem;
+	color: white;
+}
+
+.copy__message {
+	margin: .5rem 0;
+	color: #80520d;
+	font-size: 0.75rem;
+	text-align: center;
+}

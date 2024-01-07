@@ -8,6 +8,7 @@ import Dividers from './components/Divider';
 import URLInput from './components/URLInput';
 import URLOutput from './components/URLOutput';
 import Navbar from './components/Navbar';
+import axios from 'axios';
 
 // require('dotenv').config({
 //   path: process.env.NODE_ENV === "production" ? ".env.production" : ".env.development"
@@ -38,11 +39,10 @@ function App() {
 	}
 
 	const requestShortenUrl = async (e) => {
-		await fetch(`${serverUri}/url`, {
+		await axios.get(`${serverUri}/url`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				'Access-Control-Allow-Origin': '*'
 			},
 			body: JSON.stringify(url)
 		})
